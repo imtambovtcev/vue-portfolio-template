@@ -1,12 +1,13 @@
-import Vue from "vue";
-import App from "./App.vue";
-import $ from "jquery";
+import { createApp } from 'vue';
+import App from './App.vue';
+import $ from 'jquery';
 
-Vue.config.productionTip = false;
+const app = createApp(App);
 
-new Vue({
-  render: (h) => h(App),
-}).$mount("#app");
+// You can still set productionTip to false if needed
+app.config.productionTip = false;
+
+app.mount('#app');
 
 // HIGHLIGHT NAV MENU ITEM ON SCROLL
 // Cache selectors
@@ -16,7 +17,7 @@ var lastId,
   // // All list items
   menuItems = topMenu.find("a"),
   // // Anchors corresponding to menu items
-  scrollItems = menuItems.map(function() {
+  scrollItems = menuItems.map(function () {
     var item = $($(this).attr("href"));
     if (item.length) {
       return item;
@@ -25,7 +26,7 @@ var lastId,
 
 // put sections in an array
 var sections = [];
-$("#navbar-nav li").each(function() {
+$("#navbar-nav li").each(function () {
   sections.push(
     $(this)
       .find("a")
@@ -35,12 +36,12 @@ $("#navbar-nav li").each(function() {
 sections = sections.map((x) => x.slice(1));
 
 // Bind to scroll
-$(window).on("scroll", function() {
+$(window).on("scroll", function () {
   // Get container scroll position
   var fromTop = $(this).scrollTop() + topMenuHeight;
 
   // Get id of current scroll item
-  var cur = scrollItems.map(function() {
+  var cur = scrollItems.map(function () {
     if ($(this).offset().top < fromTop) return this;
   });
   // Get the id of the current element
@@ -65,7 +66,7 @@ $(window).on("scroll", function() {
       .parent()
       .removeClass("active-nav")
       .end()
-      .filter("[href=\\#" + id + "]")
+      .filter("[href=\\\\#" + id + "]")
       .parent()
       .addClass("active-nav");
   }
