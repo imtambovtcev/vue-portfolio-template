@@ -66,7 +66,7 @@ $(window).on("scroll", function () {
       .parent()
       .removeClass("active-nav")
       .end()
-      .filter("[href=\\\\#" + id + "]")
+      .filter("[href='#" + id + "']")
       .parent()
       .addClass("active-nav");
   }
